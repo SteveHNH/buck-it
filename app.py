@@ -69,7 +69,8 @@ async def consumer(client):
             bucket = BUCKET_MAP[doc["category"]]
             await store(payload, bucket)
             produce_queue.append(
-                {"validation": "handoff", "payload_id": doc["payload_id"]}
+                {"validation": "handoff", "payload_id": doc["payload_id"],
+                 "service": "buck-it"}
             )
     await asyncio.sleep(0.5)
 
